@@ -21,5 +21,8 @@ function merge($left, $right) {
     return array_merge($result, $left, $right);
 }
 
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = json_decode($_POST['array'], true);
+    echo json_encode(['sorted' => mergeSort($input)]);
+}
 ?>
