@@ -1,4 +1,4 @@
-<?php
+git push --set-upstream origin devBranch<?php
 function isPalindrome($word){
 
     $characterList=[];
@@ -18,5 +18,8 @@ function isPalindrome($word){
     }
 } 
 
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = $_POST['string'] ?? '';
+    echo json_encode(['isPalindrome' => isPalindrome($input)]);
+}
 ?>
