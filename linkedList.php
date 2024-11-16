@@ -1,6 +1,5 @@
 <?php
-class Node
-{
+class Node{
     public $value;
     public $next;
 
@@ -11,8 +10,7 @@ class Node
     }
 }
 
-class LinkedList
-{
+class LinkedList{
     public $head;
 
     public function __construct()
@@ -57,3 +55,14 @@ class LinkedList
         return $nodesList;
     }
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $values = json_decode($_POST['values'], true);
+    $list = new LinkedList();
+    foreach ($values as $value) {
+        $list->add($value);
+    }
+    echo json_encode(['nodes_with_two_vowels' => $list->nodes_two_vowels()]);
+}
+
+?>
