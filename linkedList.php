@@ -33,4 +33,27 @@ class LinkedList
             $current->next = $newNode;
         }
     }
+
+    public function nodes_two_vowels()
+    {
+        $current = $this->head;
+        $nodesList = [];
+        $vowels = ["a", "e", "i", "o", "u"];
+
+        while ($current !== null) {
+            $count = 0;
+            for ($i = 0; $i < strlen($current->value); $i++) {
+                if (in_array($current->value[$i], $vowels)) {
+                    $count++;
+                }
+            }
+
+            if ($count === 2) {
+                $nodesList[] = $current->value;
+            }
+
+            $current = $current->next;
+        }
+        return $nodesList;
+    }
 }
