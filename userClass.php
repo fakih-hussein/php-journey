@@ -31,13 +31,13 @@ class User
         return new User($newEmail ?? $this->email, $newPassword ?? $this->password);
     }
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'create_user') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if (User::validate_email($email) && User::check_password($password)) {
         $user = new User($email, $password);
-        echo json_encode(['status' => 'success', 'user' => ['email' => $email]]);
+        echo json_encode(['status' => 'valid', 'user' => ['email' => $email]]);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Invalid email or password']);
     }
