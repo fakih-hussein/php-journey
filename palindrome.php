@@ -6,6 +6,17 @@ function isPalindrome($word){
         $characterList[]=$word[$i];
     }
 
+    $reversedList=[];
+    for ($i = count($characterList) - 1; $i >= 0; $i--) {
+        $reversedList[] = $characterList[$i];
+    }
+
+    if ($characterList === $reversedList) {
+        return true;
+    } else {
+        return false;
+    }
 } 
+
 
 ?>
