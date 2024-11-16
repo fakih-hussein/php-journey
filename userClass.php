@@ -10,7 +10,7 @@ class User
         $this->password = $password;
     }
 
-    public static function validateEmail($email)
+    public static function validate_email($email)
     {
         $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
         $valid = preg_match($pattern, $email);
@@ -21,7 +21,7 @@ class User
         }
     }
 
-    public static function checkPassword($password)
+    public static function check_password($password)
     {
         $hasUpperCase = preg_match("/[A-Z]/", $password);
         $hasLowerCase = preg_match("/[a-z]/", $password);
@@ -30,4 +30,9 @@ class User
 
         return $hasLowerCase && $hasUpperCase && $hasSpecial && $hasMinLen;
     }
+
+    public function copy_with($newEmail, $newPassword) {
+        return new User($newEmail ?? $this->email, $newPassword ?? $this->password);
+    }
+
 }
